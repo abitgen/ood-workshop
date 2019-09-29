@@ -1,7 +1,7 @@
 package com.abit.cooperatecheatgame.domain.game
 
 import com.abit.cooperatecheatgame.domain.choice.IChoiceSetter
-import com.abit.cooperatecheatgame.domain.player.IsCopyCatBot
+import com.abit.cooperatecheatgame.domain.player.IBotChoiceSetter
 import com.abit.cooperatecheatgame.utils.PresentScore
 import com.abit.cooperatecheatgame.domain.player.IsBot
 import com.abit.cooperatecheatgame.domain.player.Player
@@ -29,7 +29,7 @@ class GameMachine(private val playerMap : Map<PlayerType, Player>, private val l
     fun setBotPlayerChoices(roundId:Int){
         playerMap.forEach { (type, player) ->
             if(!isReal(player)) {
-                if (player is IsCopyCatBot) {
+                if (player is IBotChoiceSetter) {
                     player.setPlayerChoice(roundId)
                 }
                 player.choices.add(player.getPlayerChoice())

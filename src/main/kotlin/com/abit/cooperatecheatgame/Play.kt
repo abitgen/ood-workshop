@@ -3,7 +3,7 @@ package com.abit.cooperatecheatgame
 import com.abit.cooperatecheatgame.domain.player.*
 import com.abit.cooperatecheatgame.set.ChoiceEnterType
 import com.abit.cooperatecheatgame.set.PlayerType
-import com.abit.cooperatecheatgame.Constants.Companion.NO_OF_PLAYER
+import com.abit.cooperatecheatgame.Constants.Companion.NO_OF_ROUNDS
 import com.abit.cooperatecheatgame.domain.game.GameLogic
 import com.abit.cooperatecheatgame.domain.game.GameMachine
 import com.abit.cooperatecheatgame.utils.InitGameMachine
@@ -43,7 +43,8 @@ fun main() {
     /* testOneRealOneEvilBotPlayers(play)
      testOneRealOneGoodBotPlayers(play)*/
     //testEvilCopyCatBotPlayer(play, gameMachine)
-    testOneRealOneCopyCatBotPlayer(play, gameMachine)
+    //testOneRealOneCopyCatBotPlayer(play, gameMachine)
+    testOneRealOneGrudgerBotPlayer(play, gameMachine)
 }
 
 
@@ -70,7 +71,7 @@ fun testTwoRealPlayers(play: Play, gameMachine: InitGameMachine) {
 
     val playerList = listOf(player1, player2)
 
-    play.startPlay(NO_OF_PLAYER, gameMachine(playerList), ChoiceEnterType.CLI)
+    play.startPlay(NO_OF_ROUNDS, gameMachine(playerList), ChoiceEnterType.CLI)
 }
 
 
@@ -97,7 +98,7 @@ fun testOneRealOneGoodBotPlayers(play: Play, gameMachine: InitGameMachine) {
     val player2: Player = GoodBotPlayer("Android")
 
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_PLAYER, gameMachine(playerList), ChoiceEnterType.RANDOM)
+    play.startPlay(NO_OF_ROUNDS, gameMachine(playerList), ChoiceEnterType.RANDOM)
 }
 
 
@@ -136,7 +137,7 @@ fun testTwoBotPlayers(play: Play, gameMachine: InitGameMachine) {
         GoodBotPlayer("Android")
     val player2: Player = EvilBotPlayer("Apple")
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_PLAYER, gameMachine(playerList))
+    play.startPlay(NO_OF_ROUNDS, gameMachine(playerList))
 }
 
 
@@ -157,7 +158,7 @@ fun testEvilCopyCatBotPlayer(play: Play, gameMachine: InitGameMachine) {
     val player2: Player =
         CopyCatBotPlayer("Apple", player1)
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_PLAYER, gameMachine(playerList))
+    play.startPlay(NO_OF_ROUNDS, gameMachine(playerList))
 }
 
 
@@ -179,6 +180,33 @@ fun testOneRealOneCopyCatBotPlayer(play: Play, gameMachine: InitGameMachine) {
     val player2: Player =
         CopyCatBotPlayer("Android", player1)
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_PLAYER, gameMachine(playerList), ChoiceEnterType.CLI)
+    play.startPlay(NO_OF_ROUNDS, gameMachine(playerList), ChoiceEnterType.CLI)
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fun testOneRealOneGrudgerBotPlayer(play: Play, gameMachine: InitGameMachine) {
+    val player1: Player =
+        RealPlayer("User A")
+    val player2: Player =
+        GrudgerBotPlayer("Android", player1)
+    val playerList = listOf(player1, player2)
+    play.startPlay(NO_OF_ROUNDS, gameMachine(playerList), ChoiceEnterType.RANDOM)
 
 }

@@ -2,7 +2,7 @@ package com.abit.cooperatecheatgame.domain.player
 
 import com.abit.cooperatecheatgame.set.ChoiceSet
 
-class CopyCatBotPlayer(name: String, private val opponent: Player) : Player(name), IsCopyCatBot {
+class CopyCatBotPlayer(name: String, private val opponent: Player) : Player(name), IBotChoiceSetter {
 
     private fun getOpponentPreviousChoice(currentRoundIndex: Int): ChoiceSet? {
         return if (currentRoundIndex == 0) ChoiceSet.COOPERATE
