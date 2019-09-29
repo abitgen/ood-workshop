@@ -49,6 +49,14 @@ fun main() {
 }
 
 
+
+
+
+
+
+
+
+
 fun testTwoRealPlayers(play: Play, gameMachine: InitGameMachine) {
     val player1: Player = RealPlayer("Kumar")
     val player2: Player = RealPlayer("SomeName")
@@ -70,19 +78,12 @@ fun testTwoRealPlayers(play: Play, gameMachine: InitGameMachine) {
 
 
 
-
-
-
-
-
-
-
 fun testOneRealOneGoodBotPlayers(play: Play, gameMachine: InitGameMachine) {
     val player1: Player = RealPlayer("Kumar")
     val player2: Player = GoodBotPlayer("Android")
 
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.RANDOM)
+    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.RANDOM, gameMode = GameType.NORMAL.mode(null))
 }
 
 
@@ -101,9 +102,8 @@ fun testOneRealOneEvilBotPlayers(play: Play, gameMachine: InitGameMachine) {
 
     val playerList = listOf(player1, player2)
 
-    play.startPlay(2, playerList, gameMachine(playerList))
+    play.startPlay(2, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode(null))
 }
-
 
 
 
@@ -121,7 +121,7 @@ fun testTwoBotPlayers(play: Play, gameMachine: InitGameMachine) {
         GoodBotPlayer("Android")
     val player2: Player = EvilBotPlayer("Apple")
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList))
+    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode(null))
 }
 
 
@@ -140,9 +140,9 @@ fun testEvilCopyCatBotPlayer(play: Play, gameMachine: InitGameMachine) {
     val player1: Player =
         EvilBotPlayer("Android")
     val player2: Player =
-        CopyCatBotPlayer("Apple", player1)
+        CopyCatBotPlayer("Apple", player1.choices)
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList))
+    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode(null))
 }
 
 
@@ -162,16 +162,11 @@ fun testOneRealOneCopyCatBotPlayer(play: Play, gameMachine: InitGameMachine) {
     val player1: Player =
         RealPlayer("User")
     val player2: Player =
-        CopyCatBotPlayer("Android", player1)
+        CopyCatBotPlayer("Android", player1.choices)
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.CLI)
+    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.CLI, GameType.NORMAL.mode(null))
 
 }
-
-
-
-
-
 
 
 
@@ -189,9 +184,10 @@ fun testOneRealOneGrudgerBotPlayer(play: Play, gameMachine: InitGameMachine) {
     val player1: Player =
         RealPlayer("User A")
     val player2: Player =
-        GrudgerBotPlayer("Android", player1)
+        GrudgerBotPlayer("Android", player1.choices)
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.RANDOM)
+    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList),
+        ChoiceEnterType.RANDOM, GameType.NORMAL.mode(null))
 
 }
 
@@ -215,13 +211,14 @@ fun testTournamentGame(play: Play, gameMachine: (List<Player>) -> GameMachine) {
 
 
     val copycatDelegate = object : PlayerDelegate{
-        override fun invoke(p1: Player): Player = CopyCatBotPlayer("Evil", p1)
+        override fun invoke(p1: Player): Player = CopyCatBotPlayer("Copycat", p1.choices)
     }
 
     val grudgerDelegate = object : PlayerDelegate{
-        override fun invoke(p1: Player): Player = GrudgerBotPlayer("Grudger", p1)
+        override fun invoke(p1: Player): Player = GrudgerBotPlayer("Grudger", p1.choices)
     }
     val dependOnOtherPlayerList : List<PlayerDelegate> = listOf(copycatDelegate, grudgerDelegate)
 
-    play.startPlay(NO_OF_ROUNDS, simplePlayerList, gameMachine(simplePlayerList), ChoiceEnterType.RANDOM, GameType.TOURNAMENT.mode(dependOnOtherPlayerList))
+    play.startPlay(NO_OF_ROUNDS, simplePlayerList, gameMachine(simplePlayerList),
+        ChoiceEnterType.RANDOM, GameType.TOURNAMENT.mode(dependOnOtherPlayerList))
 }

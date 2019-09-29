@@ -12,7 +12,7 @@ class PresentScore() {
     }
 
     fun doPrintGameStart(){
-        println(">>>>>>>>> New Game <<<<<<<<<<<<<")
+        println("\n>>>>>>>>> New Game <<<<<<<<<<<<<")
     }
 
     fun doPrintSeparator(){

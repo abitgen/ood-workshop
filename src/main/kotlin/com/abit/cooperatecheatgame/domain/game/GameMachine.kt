@@ -15,6 +15,8 @@ class GameMachine(private val playerMap : HashMap<PlayerType, Player>, private v
 
     private fun getPlayer(playerType: PlayerType) = playerMap[playerType]
 
+    private fun atleastOneRealPlayer() = playerMap.count { isReal(it.value) && it.value is IChoiceSetter } > 0
+
     fun setRealPlayerChoices(choiceEnterType: ChoiceEnterType?){
         if(atleastOneRealPlayer() && choiceEnterType==null)
             throw NullPointerException("ChoiceProvider should not be null for Real Player")
@@ -36,8 +38,6 @@ class GameMachine(private val playerMap : HashMap<PlayerType, Player>, private v
             }
         }
     }
-
-    private fun atleastOneRealPlayer() = playerMap.count { isReal(it.value) && it.value is IChoiceSetter } > 0
 
     fun startRound(id:Int){
         val round = Round(id)

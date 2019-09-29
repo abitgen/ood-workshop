@@ -19,22 +19,27 @@ A Bot Player always cooperates
 ~~~~~~~~~~~~~~~~~~~
 
 Evil bot
-
 A Bot Player always cheats
 
 ~~~~~~~~~~~~~~~~~~~
 
+~~~~~~~~~~~~~~~~~~~
+Copycat bot
 first - COOPERATE
-Copycatbot
+then copy previous move of opponent
 
-
+~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~
 
 Grudger Bot
-It will start with cooperate, if opponent cheats once it turns to evilbot
+It will start with cooperate,
+if opponent cheats once it cheats forever
 
-
+~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~
 
 Tournament
-Kind, Evil, Copycat, Grudger playing in tournament competing each other.
+Kind, Evil, Copycat, Grudger playing in tournament 
+competing each other.
+
+~~~~~~~~~~~~~~~~~~~
