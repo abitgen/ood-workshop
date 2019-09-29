@@ -11,6 +11,10 @@ class PresentScore() {
         println(" Player ${player?.name} score ${player?.getPlayerScore()} ")
     }
 
+    fun doPrintGameStart(){
+        println(">>>>>>>>> New Game <<<<<<<<<<<<<")
+    }
+
     fun doPrintSeparator(){
         println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
     }

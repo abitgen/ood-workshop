@@ -9,7 +9,7 @@ import com.abit.cooperatecheatgame.set.ChoiceEnterType
 import com.abit.cooperatecheatgame.set.PlayerType
 import java.lang.NullPointerException
 
-class GameMachine(private val playerMap : Map<PlayerType, Player>, private val logic: GameLogic, private val presentScore: PresentScore) {
+class GameMachine(private val playerMap : HashMap<PlayerType, Player>, private val logic: GameLogic, private val presentScore: PresentScore) {
 
     private fun isReal(playerObj: Player) = playerObj !is IsBot
 
@@ -56,6 +56,14 @@ class GameMachine(private val playerMap : Map<PlayerType, Player>, private val l
     fun onGameOver() {
         presentScore.doPrintGameOver(getPlayer(PlayerType.PLAYER1))
         presentScore.doPrintGameOver(getPlayer(PlayerType.PLAYER2))
+    }
+
+    fun onGameStart() {
+        presentScore.doPrintGameStart()
+    }
+
+    fun switchPlayer(player:Player, playerType: PlayerType){
+        playerMap[playerType] = player
     }
 
 }
