@@ -1,8 +1,6 @@
 package com.abit.cooperatecheatgame.domain.game
 
-import com.abit.cooperatecheatgame.utils.PlayerDelegate
-
-enum class GameType(val mode:(List<PlayerDelegate>?)->IGameMode) {
+enum class GameType(val mode:()->IGameMode) {
     NORMAL({ NormalGame() }),
-    TOURNAMENT({ TournamentGame(it) })
+    TOURNAMENT({ TournamentGame() })
 }

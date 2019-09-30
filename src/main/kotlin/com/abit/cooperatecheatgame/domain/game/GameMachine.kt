@@ -32,11 +32,16 @@ class GameMachine(private val playerMap : HashMap<PlayerType, Player>, private v
         playerMap.forEach { (type, player) ->
             if(!isReal(player)) {
                 if (player is IBotChoiceSetter) {
-                    player.setPlayerChoice(roundId)
+                    player.setPlayerChoice(roundId, getOpponentPlayer(player)?.choices ?: listOf())
                 }
                 player.choices.add(player.getPlayerChoice())
             }
         }
+    }
+
+    private fun getOpponentPlayer(player:Player) : Player?{
+        return if(getPlayer(PlayerType.PLAYER1) == player)  getPlayer(PlayerType.PLAYER2)
+        else getPlayer(PlayerType.PLAYER1)
     }
 
     fun startRound(id:Int){
@@ -58,12 +63,20 @@ class GameMachine(private val playerMap : HashMap<PlayerType, Player>, private v
         presentScore.doPrintGameOver(getPlayer(PlayerType.PLAYER2))
     }
 
+    fun onGameOver(player:Player?) {
+        presentScore.doPrintGameOver(player)
+    }
+
     fun onGameStart() {
         presentScore.doPrintGameStart()
     }
 
     fun switchPlayer(player:Player, playerType: PlayerType){
         playerMap[playerType] = player
+    }
+
+    fun resetPlayer(playerType: PlayerType) {
+        getPlayer(playerType)?.choices?.clear()
     }
 
 }

@@ -44,150 +44,74 @@ fun main() {
      testOneRealOneGoodBotPlayers(play)*/
     //testEvilCopyCatBotPlayer(play, gameMachine)
     //testOneRealOneCopyCatBotPlayer(play, gameMachine)
-    testOneRealOneGrudgerBotPlayer(play, gameMachine)
+    //testOneRealOneGrudgerBotPlayer(play, gameMachine)
     testTournamentGame(play, gameMachine)
 }
 
 
+fun testTournamentGame(play: Play, gameMachine: (List<Player>) -> GameMachine) {
+    val goodBot: Player = GoodBotPlayer("Good")
+    val copyCatBot: Player = CopyCatBotPlayer("Copycat")
+    val grudgerBot: Player = GrudgerBotPlayer("Grudger")
+    val evilBot: Player = EvilBotPlayer("Evil")
+    val simplePlayerList = listOf(goodBot, evilBot, copyCatBot, grudgerBot)
 
-
-
-
-
-
-
+    play.startPlay(
+        NO_OF_ROUNDS, simplePlayerList, gameMachine(simplePlayerList),
+        ChoiceEnterType.RANDOM, GameType.TOURNAMENT.mode())
+}
 
 fun testTwoRealPlayers(play: Play, gameMachine: InitGameMachine) {
     val player1: Player = RealPlayer("Kumar")
     val player2: Player = RealPlayer("SomeName")
-
     val playerList = listOf(player1, player2)
-
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.CLI)
+    play.startPlay(Constants.NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.CLI)
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 fun testOneRealOneGoodBotPlayers(play: Play, gameMachine: InitGameMachine) {
     val player1: Player = RealPlayer("Kumar")
     val player2: Player = GoodBotPlayer("Android")
-
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.RANDOM, gameMode = GameType.NORMAL.mode(null))
+    play.startPlay(
+        Constants.NO_OF_ROUNDS, playerList, gameMachine(playerList),
+        ChoiceEnterType.RANDOM, gameMode = GameType.NORMAL.mode())
 }
-
-
-
-
-
-
-
-
-
-
 
 fun testOneRealOneEvilBotPlayers(play: Play, gameMachine: InitGameMachine) {
     val player1: Player = RealPlayer("Kumar")
     val player2: Player = EvilBotPlayer("Apple")
-
     val playerList = listOf(player1, player2)
-
-    play.startPlay(2, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode(null))
+    play.startPlay(2, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode())
 }
-
-
-
-
-
-
-
-
-
-
-
 
 fun testTwoBotPlayers(play: Play, gameMachine: InitGameMachine) {
-    val player1: Player =
-        GoodBotPlayer("Android")
+    val player1: Player = GoodBotPlayer("Android")
     val player2: Player = EvilBotPlayer("Apple")
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode(null))
+    play.startPlay(Constants.NO_OF_ROUNDS, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode())
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 fun testEvilCopyCatBotPlayer(play: Play, gameMachine: InitGameMachine) {
-    val player1: Player =
-        EvilBotPlayer("Android")
-    val player2: Player =
-        CopyCatBotPlayer("Apple", player1.choices)
+    val player1: Player = EvilBotPlayer("Android")
+    val player2: Player = CopyCatBotPlayer("Apple")
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode(null))
+    play.startPlay(Constants.NO_OF_ROUNDS, playerList, gameMachine(playerList), gameMode = GameType.NORMAL.mode())
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 fun testOneRealOneCopyCatBotPlayer(play: Play, gameMachine: InitGameMachine) {
-    val player1: Player =
-        RealPlayer("User")
-    val player2: Player =
-        CopyCatBotPlayer("Android", player1.choices)
+    val player1: Player = RealPlayer("User")
+    val player2: Player = CopyCatBotPlayer("Android")
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.CLI, GameType.NORMAL.mode(null))
-
+    play.startPlay(Constants.NO_OF_ROUNDS, playerList, gameMachine(playerList), ChoiceEnterType.CLI, GameType.NORMAL.mode())
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 fun testOneRealOneGrudgerBotPlayer(play: Play, gameMachine: InitGameMachine) {
-    val player1: Player =
-        RealPlayer("User A")
-    val player2: Player =
-        GrudgerBotPlayer("Android", player1.choices)
+    val player1: Player = RealPlayer("User A")
+    val player2: Player = GrudgerBotPlayer("Android")
     val playerList = listOf(player1, player2)
-    play.startPlay(NO_OF_ROUNDS, playerList, gameMachine(playerList),
-        ChoiceEnterType.RANDOM, GameType.NORMAL.mode(null))
+    play.startPlay(
+        NO_OF_ROUNDS, playerList, gameMachine(playerList),
+        ChoiceEnterType.CLI, GameType.NORMAL.mode())
 
 }
 
@@ -198,27 +122,3 @@ fun testOneRealOneGrudgerBotPlayer(play: Play, gameMachine: InitGameMachine) {
 
 
 
-
-fun testTournamentGame(play: Play, gameMachine: (List<Player>) -> GameMachine) {
-    val goodBot: Player =
-        GoodBotPlayer("Good")
-
-    val evilBot: Player =
-        EvilBotPlayer("Evil")
-
-
-    val simplePlayerList = listOf(goodBot, evilBot)
-
-
-    val copycatDelegate = object : PlayerDelegate{
-        override fun invoke(p1: Player): Player = CopyCatBotPlayer("Copycat", p1.choices)
-    }
-
-    val grudgerDelegate = object : PlayerDelegate{
-        override fun invoke(p1: Player): Player = GrudgerBotPlayer("Grudger", p1.choices)
-    }
-    val dependOnOtherPlayerList : List<PlayerDelegate> = listOf(copycatDelegate, grudgerDelegate)
-
-    play.startPlay(NO_OF_ROUNDS, simplePlayerList, gameMachine(simplePlayerList),
-        ChoiceEnterType.RANDOM, GameType.TOURNAMENT.mode(dependOnOtherPlayerList))
-}

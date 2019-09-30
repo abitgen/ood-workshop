@@ -5,7 +5,6 @@ import com.abit.cooperatecheatgame.domain.choice.IChoiceGetter
 
 abstract class Player (val name:String) : IChoiceGetter {
 
-
     private var score:Int = 0
     protected open var choice: ChoiceSet? = null
     val choices = mutableListOf<ChoiceSet?>()
