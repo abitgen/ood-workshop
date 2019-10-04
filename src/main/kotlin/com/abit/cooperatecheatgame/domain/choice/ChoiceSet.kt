@@ -1,4 +1,4 @@
-package com.abit.cooperatecheatgame.set
+package com.abit.cooperatecheatgame.domain.choice
 
 enum class ChoiceSet(val userCode:String) {
     COOPERATE("CO"),

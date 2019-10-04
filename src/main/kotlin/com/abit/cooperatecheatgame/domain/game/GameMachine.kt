@@ -5,8 +5,8 @@ import com.abit.cooperatecheatgame.domain.player.IBotChoiceSetter
 import com.abit.cooperatecheatgame.utils.PresentScore
 import com.abit.cooperatecheatgame.domain.player.IsBot
 import com.abit.cooperatecheatgame.domain.player.Player
-import com.abit.cooperatecheatgame.set.ChoiceEnterType
-import com.abit.cooperatecheatgame.set.PlayerType
+import com.abit.cooperatecheatgame.domain.choice.ChoiceEnterType
+import com.abit.cooperatecheatgame.domain.player.PlayerType
 import java.lang.NullPointerException
 
 class GameMachine(private val playerMap : HashMap<PlayerType, Player>, private val logic: GameLogic, private val presentScore: PresentScore) {

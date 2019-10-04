@@ -1,7 +1,7 @@
 package com.abit.cooperatecheatgame.domain.game
 
 import com.abit.cooperatecheatgame.domain.player.Player
-import com.abit.cooperatecheatgame.set.ChoiceEnterType
+import com.abit.cooperatecheatgame.domain.choice.ChoiceEnterType
 
 open class NormalGame : IGameMode {
     override fun runGame(rounds: Int, playerList:List<Player>, machine: GameMachine, choiceEnterType: ChoiceEnterType?) {

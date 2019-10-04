@@ -1,7 +1,7 @@
 package com.abit.cooperatecheatgame.domain.game
 
 import com.abit.cooperatecheatgame.domain.player.Player
-import com.abit.cooperatecheatgame.set.PlayerType
+import com.abit.cooperatecheatgame.domain.player.PlayerType
 
 data class Round(val roundId:Int){
     fun startRound(playerList: Map<PlayerType, Player>, logic: GameLogic): HashMap<PlayerType, Int> {

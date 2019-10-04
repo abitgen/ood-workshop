@@ -1,4 +1,4 @@
-package com.abit.cooperatecheatgame.set
+package com.abit.cooperatecheatgame.domain.choice
 
 import com.abit.cooperatecheatgame.domain.choice.IPlayerChoiceProvider
 import com.abit.cooperatecheatgame.domain.choice.*

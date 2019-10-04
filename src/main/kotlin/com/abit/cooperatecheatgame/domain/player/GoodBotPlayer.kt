@@ -1,6 +1,6 @@
 package com.abit.cooperatecheatgame.domain.player
 
-import com.abit.cooperatecheatgame.set.ChoiceSet
+import com.abit.cooperatecheatgame.domain.choice.ChoiceSet
 
 class GoodBotPlayer(name: String) : Player(name), IsBot {
 

@@ -1,6 +1,6 @@
 package com.abit.cooperatecheatgame.domain.game
 
-import com.abit.cooperatecheatgame.set.ChoiceSet
+import com.abit.cooperatecheatgame.domain.choice.ChoiceSet
 
 class GameLogic {
     fun computeLogic(a: ChoiceSet?, b: ChoiceSet?) :Pair<Int,Int>{

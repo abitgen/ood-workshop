@@ -1,7 +1,5 @@
 package com.abit.cooperatecheatgame.domain.choice
 
-import com.abit.cooperatecheatgame.set.ChoiceSet
-import com.abit.cooperatecheatgame.set.PlayerType
 import java.util.*
 
 class RealCliChoice(private val playerName: String) : IPlayerChoiceProvider {

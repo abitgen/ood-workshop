@@ -1,4 +1,4 @@
-package com.abit.cooperatecheatgame.set
+package com.abit.cooperatecheatgame.domain.player
 
 enum class PlayerType {
     PLAYER1,
